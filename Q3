@@ -1,0 +1,113 @@
+/*
+Author: Noor Mohammed Sadiq D
+Course: Advanced Object-Oriented Programming
+Course Code: 18UCSE508
+ASSIGNMENT:02
+Question-03
+USN:2SD21CS405---Sem:5--- Div.: A
+*/
+package application;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.WindowEvent;
+import javafx.event.EventHandler;
+import javafx.collections.*;
+import javafx.stage.Stage;
+import javafx.scene.text.Text.*;
+import javafx.scene.paint.*;
+import javafx.scene.text.*;
+public class Main extends Application {
+// labels
+Label label;
+
+// launch the application
+public void start(Stage stage)
+{
+// set title for the stage
+stage.setTitle("contextMenu ");
+
+// create a label
+
+Label label = new Label("New ________________View");
+// create a menu
+ContextMenu contextMenu = new ContextMenu();
+
+// create menuitems
+MenuItem menuItem1 = new MenuItem("File");
+MenuItem menuItem2 = new MenuItem("Folder");
+MenuItem menuItem3 = new MenuItem("Image");
+
+// add menu items to menu
+contextMenu.getItems().add(menuItem1);
+contextMenu.getItems().add(menuItem2);
+contextMenu.getItems().add(menuItem3);
+
+// label to display events
+Label label1 = new Label("");
+//////VIEW
+Label label3 = new Label("View");
+// create a menu
+ContextMenu contextMenu1 = new ContextMenu();
+
+// create menuitems
+MenuItem menuItem = new MenuItem("Large");
+MenuItem menuItem0 = new MenuItem("Medium");
+MenuItem menuItem4 = new MenuItem("Small");
+
+// add menu items to menu
+contextMenu.getItems().add(menuItem);
+contextMenu.getItems().add(menuItem0);
+contextMenu.getItems().add(menuItem4);
+
+// label to display events
+Label label2 = new Label("");
+
+
+// create window event
+EventHandler<WindowEvent> event = new EventHandler<WindowEvent>() {
+public void handle(WindowEvent e)
+{
+if (contextMenu.isShowing())
+label.setText("New and View selected");
+else
+label.setText("Menu hidden");
+}
+};
+
+// add event
+contextMenu.setOnShowing(event);
+contextMenu.setOnHiding(event);
+//new
+// create a tilepane
+TilePane tilePane = new TilePane(label1);
+
+tilePane.getChildren().add(label);
+//view
+TilePane tilePane1 = new TilePane(label2);
+
+tilePane1.getChildren().add(label3);
+
+
+// setContextMenu to label
+label.setContextMenu(contextMenu);
+//label3.setContextMenu(contextMenu1);
+
+// create a scene
+Scene sc = new Scene(tilePane, 200, 200);
+//Scene sc1 = new Scene(tilePane1, 200, 200);
+
+// set the scene
+stage.setScene(sc);
+//stage.setScene(sc1);
+stage.show();
+}
+
+public static void main(String args[])
+{
+// launch the application
+launch(args);
+}
+}
