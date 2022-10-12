@@ -1,0 +1,110 @@
+
+/*
+Author: Noor Mohammed Sadiq D
+Course: Advanced Object-Oriented Programming
+Course Code: 18UCSE508
+ASSIGNMENT:02
+Question-02
+USN:2SD21CS405---Sem:5--- Div.: A
+*/
+package application;
+
+import javafx.application.*;
+import javafx.scene.*;
+import javafx.stage.*;
+import javafx.scene.layout.*;
+import javafx.scene.control.*;
+import javafx.scene.input.*;
+import javafx.event.*;
+
+public class Main extends Application {
+Label response;
+
+public static void main(String[] args) {
+launch(args);
+}
+
+
+public void start(Stage myStage) {
+myStage.setTitle("Demonstrate Menus");
+
+
+BorderPane rootNode = new BorderPane();
+Scene myScene = new Scene(rootNode, 300, 300);
+
+myStage.setScene(myScene);
+
+response = new Label("Menu Demo");
+
+MenuBar mb = new MenuBar();
+
+MenuItem File = new Menu("_File");  
+MenuItem Edit = new MenuItem("Edit");
+MenuItem Help = new MenuItem("Help");
+
+
+File.setAccelerator(KeyCombination.keyCombination("shortcut+O"));
+Edit.setAccelerator(KeyCombination.keyCombination("shortcut+C"));
+Help.setAccelerator(KeyCombination.keyCombination("shortcut+E"));
+
+
+
+Menu optionsMenu = new Menu("File");
+
+Menu colorsMenu = new Menu("Options");
+MenuItem New = new MenuItem("New");
+MenuItem Open = new MenuItem("Open");
+MenuItem Save = new MenuItem("Save");
+
+colorsMenu.getItems().addAll(New, Open, Save);
+optionsMenu.getItems().add(colorsMenu);
+mb.getMenus().add(optionsMenu);
+
+Menu optionsMenu1 = new Menu("Edit");
+
+Menu colorsMenu1 = new Menu("Options");
+MenuItem Cut = new MenuItem("Cut");
+MenuItem Copy = new MenuItem("Copy");
+MenuItem Paste = new MenuItem("Paste");
+
+colorsMenu1.getItems().addAll(Cut, Copy, Paste);
+optionsMenu1.getItems().add(colorsMenu1);
+
+
+mb.getMenus().add(optionsMenu1);
+
+
+Menu helpMenu = new Menu("Help");
+MenuItem helpcentre = new MenuItem("Help Centre");
+helpMenu.getItems().add(helpcentre);
+
+MenuItem about = new MenuItem("About Us");
+helpMenu.getItems().add(about);
+
+
+mb.getMenus().add(helpMenu);
+
+EventHandler<ActionEvent> MEHandler = new EventHandler<ActionEvent>() {
+public void handle(ActionEvent ae) {
+String name = ((MenuItem) ae.getTarget()).getText();
+
+response.setText(name + " selected");
+}
+};
+
+
+Edit.setOnAction(MEHandler);
+Help.setOnAction(MEHandler);
+File.setOnAction(MEHandler);
+Cut.setOnAction(MEHandler);
+Copy.setOnAction(MEHandler);
+Paste.setOnAction(MEHandler);
+about.setOnAction(MEHandler);
+
+rootNode.setTop(mb);
+rootNode.setCenter(response);
+
+myStage.show();
+}
+}
+
